@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface ExperienceProps {
   title: string;
@@ -21,11 +22,12 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
   return (
     <div className="mb-8">
       <div className="flex items-start">
-        <div className="w-10 h-10 mr-4 flex-shrink-0">
-          <img
+        <div className="w-12 h-12 rounded-full overflow-hidden relative mr-4">
+          <Image
             src={logo}
             alt={`${company} logo`}
-            className="w-full h-full rounded-full  object-cover border border-[var(--border)]"
+            fill
+            className="object-cover"
           />
         </div>
 
@@ -41,11 +43,12 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
 
             {isHovered && preview && (
               <div className="absolute z-10 left-full ml-4 top-0 w-72 p-2 shadow-lg bg-[var(--tooltip)] border border-[var(--tooltip-border)] rounded text-sm text-[var(--tooltip-foreground)]">
-                <div className="w-full h-40 overflow-hidden rounded mb-2">
-                  <img
+                <div className="w-full h-48 overflow-hidden rounded relative">
+                  <Image
                     src={preview}
                     alt={`${company} preview`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <p className="text-xs">{description}</p>

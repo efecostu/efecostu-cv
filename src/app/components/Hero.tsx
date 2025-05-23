@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 interface LinkWithTooltipProps {
   href?: string;
@@ -104,11 +105,12 @@ const LinkWithTooltip: React.FC<LinkWithTooltipProps> = ({
           onMouseLeave={hideTooltip}
         >
           {imageUrl && (
-            <div className="w-full h-40 overflow-hidden rounded mb-2">
-              <img
+            <div className="w-full h-40 overflow-hidden rounded mb-2 relative">
+              <Image
                 src={imageUrl}
                 alt="tooltip illustration"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
           )}
@@ -162,7 +164,7 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="mb-8 text-base text-[var(--foreground)]">
-          With a background in <LinkWithTooltip text="Industrial Engineering" description="Data analysis, supply chain management, SAP usage" /> and a master&apos;s in <LinkWithTooltip text="Business Management" description="Sales strategy, financial performance, project coordination" />, I've supported operations in Turkey and the UK—optimizing logistics, developing predictive maintenance systems, and designing SEO-optimized websites.
+          With a background in <LinkWithTooltip text="Industrial Engineering" description="Data analysis, supply chain management, SAP usage" /> and a master&apos;s in <LinkWithTooltip text="Business Management" description="Sales strategy, financial performance, project coordination" />, I&apos;ve supported operations in Turkey and the UK—optimizing logistics, developing predictive maintenance systems, and designing SEO-optimized websites.
         </div>
 
         <div className="my-8">
@@ -183,11 +185,11 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="mb-8 text-base text-[var(--foreground)]">
-          I've collaborated with DHL, SKF, and SMEs on both technical and strategic goals.
+          I&apos;ve collaborated with DHL, SKF, and SMEs on both technical and strategic goals.
         </div>
 
         <div className="mb-8 text-base text-[var(--foreground)]">
-          I'm also a former student union president and active community builder in youth-led events and international summits.
+          I&apos;m also a former student union president and active community builder in youth-led events and international summits.
         </div>
       </div>
       <div className="flex gap-5 mt-8">
