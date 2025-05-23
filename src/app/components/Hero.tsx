@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 
 interface LinkWithTooltipProps {
   href?: string;
@@ -105,12 +104,11 @@ const LinkWithTooltip: React.FC<LinkWithTooltipProps> = ({
           onMouseLeave={hideTooltip}
         >
           {imageUrl && (
-            <div className="w-full h-40 overflow-hidden rounded mb-2 relative">
-              <Image
+            <div className="w-full h-40 overflow-hidden rounded mb-2">
+              <img
                 src={imageUrl}
                 alt="tooltip illustration"
-                fill
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           )}

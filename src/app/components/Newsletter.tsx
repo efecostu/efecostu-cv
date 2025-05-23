@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 
 // Create an API route handler in your Next.js app
 // This component will work with an API route at /api/newsletter
@@ -59,13 +58,8 @@ const ComingSoon: React.FC = () => {
     <div className="py-20 px-4 flex flex-col items-center justify-center text-center">
       {/* Stylized "much love" text */}
       <div className="relative w-full max-w-3xl mx-auto mb-10">
-        <div className="w-full h-48 overflow-hidden rounded relative">
-          <Image
-            src="/heading.png"
-            alt="Love"
-            fill
-            className="object-cover"
-          />
+        <div className="overflow-hidden">
+          <img src="/heading.png" alt="Love" className="w-2/3 mx-auto" />
         </div>
       </div>
 
