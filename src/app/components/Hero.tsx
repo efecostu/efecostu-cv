@@ -112,7 +112,7 @@ const LinkWithTooltip: React.FC<LinkWithTooltipProps> = ({
               />
             </div>
           )}
-          <div className="space-y-1">{description}</div>
+          <span className="block space-y-1">{description}</span>
           <span className="absolute -top-2 left-3 w-4 h-4 bg-[var(--tooltip)] border-t border-l border-[var(--tooltip-border)] transform rotate-45"></span>
         </div>
       )}
@@ -161,9 +161,9 @@ const Hero: React.FC = () => {
           Industrial Engineer & Business Manager with a passion for bridging engineering and business through smart digital solutions.
         </p>
 
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          With a background in <LinkWithTooltip text="Industrial Engineering" description="Data analysis, supply chain management, SAP usage" /> and a master&apos;s in <LinkWithTooltip text="Business Management" description="Sales strategy, financial performance, project coordination" />, I’ve supported operations in Turkey and the UK—optimizing logistics, developing predictive maintenance systems, and designing SEO-optimized websites.
-        </p>
+        <div className="mb-8 text-base text-[var(--foreground)]">
+          With a background in <LinkWithTooltip text="Industrial Engineering" description="Data analysis, supply chain management, SAP usage" /> and a master&apos;s in <LinkWithTooltip text="Business Management" description="Sales strategy, financial performance, project coordination" />, I've supported operations in Turkey and the UK—optimizing logistics, developing predictive maintenance systems, and designing SEO-optimized websites.
+        </div>
 
         <div className="my-8">
           <div className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
@@ -172,15 +172,23 @@ const Hero: React.FC = () => {
           <p className="text-base text-[var(--foreground)]">
             Sales Engineering, Predictive Maintenance, SEO & Web Development, SAP
           </p>
+          <a 
+            href="/SAP_EfeCostu_S4:HANA.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-sm text-[rgb(61,102,206)] hover:underline mt-2 inline-block"
+          >
+            SAP S/4HANA Business Process Integration Certified (SAP Young Professionals Program 2025 - Turkey)
+          </a>
         </div>
 
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          I’ve collaborated with DHL, SKF, and SMEs on both technical and strategic goals.
-        </p>
+        <div className="mb-8 text-base text-[var(--foreground)]">
+          I've collaborated with DHL, SKF, and SMEs on both technical and strategic goals.
+        </div>
 
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          I’m also a former student union president and active community builder in youth-led events and international summits.
-        </p>
+        <div className="mb-8 text-base text-[var(--foreground)]">
+          I'm also a former student union president and active community builder in youth-led events and international summits.
+        </div>
       </div>
       <div className="flex gap-5 mt-8">
         <SocialLink href="https://github.com/efecostu" label="GitHub" />
