@@ -53,6 +53,11 @@ const Moments: React.FC = () => {
       alt: "Publication",
     },
     {
+      image: "/moments/Efe Costu.jpeg",
+      description: "Formal portrait",
+      alt: "Formal portrait",
+    },
+    {
       image: "/moments/NKN_8871.JPG",
       description: "HASMUN'23 Secretary General speech",
       alt: "el-Presidente",
@@ -76,11 +81,6 @@ const Moments: React.FC = () => {
       image: "/moments/B0DC0BBE-A3B6-4E8E-BACE-A0CCAE2B3AC9_1_105_c.jpeg",
       description: "SynctheCITY Event Business",
       alt: "United Kingdom",
-    },
-    {
-      image: "/moments/AC87BCDB-36ED-478F-962F-F927B45C77D0_1_105_c.jpeg",
-      description: "SEMT BIZIM EV KIRA",
-      alt: "Evening break",
     },
     {
       image: "/moments/9F7C0010-B923-43B9-B95E-D31214C4247A_1_105_c.jpeg",
