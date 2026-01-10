@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 
-// Create an API route handler in your Next.js app
-// This component will work with an API route at /api/newsletter
-
-const ComingSoon: React.FC = () => {
+const ContactMe: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -18,37 +14,36 @@ const ComingSoon: React.FC = () => {
       setIsSubmitting(true);
       setError(null);
 
-      // Send the request to your own API endpoint
-      // We'll create this endpoint next
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          message: `New contact request from: ${email}`
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(
-          data.message || "Failed to subscribe. Please try again."
+          data.message || "Failed to send. Please try again."
         );
       }
 
       setIsSubmitted(true);
       setEmail("");
 
-      // Reset the submission status after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 3000);
     } catch (err) {
-      console.error("Subscription error:", err);
+      console.error("Contact error:", err);
       setError(
         err instanceof Error
           ? err.message
-          : "Failed to subscribe. Please try again."
+          : "Failed to send. Please try again."
       );
     } finally {
       setIsSubmitting(false);
@@ -57,23 +52,12 @@ const ComingSoon: React.FC = () => {
 
   return (
     <div className="py-20 px-4 flex flex-col items-center justify-center text-center">
-      {/* Stylized "much love" text */}
-      <div className="relative w-full max-w-3xl mx-auto mb-10">
-        <div className="overflow-hidden">
-          <Image
-            src="/path/to/your/image.jpg"
-            alt="Newsletter illustration"
-            width={500}
-            height={300}
-            className="w-2/3 mx-auto"
-          />
-        </div>
-      </div>
-
-      {/* Newsletter signup */}
       <div className="w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
+          Contact Me
+        </h2>
         <p className="text-base mb-6 text-[var(--foreground)]">
-          Want to stay updated? Subscribe to my newsletter
+          Leave your email and I'll get back to you
         </p>
 
         <form
@@ -94,12 +78,12 @@ const ComingSoon: React.FC = () => {
             className="px-6 py-2 bg-[var(--foreground)] text-[var(--background)] rounded-md hover:opacity-90 transition-opacity disabled:opacity-50"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Subscribing..." : "Subscribe"}
+            {isSubmitting ? "Sending..." : "Send"}
           </button>
         </form>
 
         {isSubmitted && (
-          <p className="mt-2 text-white text-sm">Thanks for subscribing!</p>
+          <p className="mt-2 text-green-500 text-sm">Thanks! I'll be in touch soon.</p>
         )}
 
         {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
@@ -108,4 +92,4 @@ const ComingSoon: React.FC = () => {
   );
 };
 
-export default ComingSoon;
+export default ContactMe;
