@@ -57,7 +57,7 @@ const ContactMe: React.FC = () => {
           Contact Me
         </h2>
         <p className="text-base mb-6 text-[var(--foreground)]">
-          Leave your email and I'll get back to you
+          Leave your email and I&apos;ll get back to you
         </p>
 
         <form
@@ -83,7 +83,7 @@ const ContactMe: React.FC = () => {
         </form>
 
         {isSubmitted && (
-          <p className="mt-2 text-green-500 text-sm">Thanks! I'll be in touch soon.</p>
+          <p className="mt-2 text-green-500 text-sm">Thanks! I&apos;ll be in touch soon.</p>
         )}
 
         {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}

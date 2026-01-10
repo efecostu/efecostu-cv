@@ -99,7 +99,7 @@ const educationData = [
 ];
 
 const preloadMedia = (preview: string) => {
-  const img = new Image();
+  const img = document.createElement('img');
   img.src = preview;
 };
 

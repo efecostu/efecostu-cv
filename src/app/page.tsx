@@ -1,14 +1,17 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Card from "./components/Card";
 import { ThemeProvider } from "./theme-provider";
 import Projects from "./components/Projects";
 import Work from "./components/Work";
 import Moments from "./components/Moments";
 import ContactForm from "./components/ContactForm";
+
+// Dynamically import Card with SSR disabled to avoid Three.js/Rapier SSR issues
+const Card = dynamic(() => import("./components/Card"), { ssr: false });
 
 export default function Home() {
   const [cardHeight, setCardHeight] = useState("100vh");
