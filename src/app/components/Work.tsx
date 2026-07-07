@@ -79,14 +79,14 @@ const educationData = [
     degree: "BSc Industrial Engineering (GPA 3.17 / 4.0)",
     institution: "Kadir Has University, Istanbul, Turkey",
     logo: "/companies/khas.png",
-    description: "Graduated with honors. Academic Publication on Decision-making Algortihms.  Relevant coursework: operations research, data analysis.",
+    description: "Graduated with honors. Academic publication on decision-making algorithms. Relevant coursework: operations research, data analysis.",
     preview: "/companies/khas.png",
   },
   {
     degree: "International Baccalaureate (IB)",
-    institution: "Bahceselir High School, Istanbul, Turkey",
+    institution: "Bahcesehir High School, Istanbul, Turkey",
     logo: "/companies/bk.png",
-    description: "Graduated with honors. Academic Publication on Decision-making Algortihms.  Relevant coursework: operations research, data analysis.",
+    description: "Completed the International Baccalaureate Diploma Programme.",
     preview: "/companies/bk.png",
   },
   {

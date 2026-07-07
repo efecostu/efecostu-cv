@@ -106,7 +106,7 @@ function Header() {
       {isMenuOpen && (
         <div className="sm:hidden fixed inset-0 top-[57px] bg-background z-50">
           <ul className="flex flex-col items-center gap-6 pt-8">
-            {["about", "projects", "work", "moments", "contact"].map((text, idx) => (
+            {["about", "experience", "education", "worth to mention", "contact"].map((text, idx) => (
               <li key={text}>
                 <button
                   onClick={() => scrollToSection(

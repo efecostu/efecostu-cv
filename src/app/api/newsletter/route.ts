@@ -8,6 +8,20 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { message } = body;
 
+    if (typeof message !== "string" || !message.trim()) {
+      return NextResponse.json(
+        { message: "Message is required" },
+        { status: 400 }
+      );
+    }
+
+    if (message.length > 5000) {
+      return NextResponse.json(
+        { message: "Message is too long" },
+        { status: 400 }
+      );
+    }
+
     // Create a transporter using Gmail
     const transporter = nodemailer.createTransport({
       service: "gmail",

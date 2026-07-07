@@ -90,7 +90,7 @@ const experiences = [
     preview: "/projects/arkpres.png",
   },
   {
-    title: "Teaching Assistant for Industial Engineering",
+    title: "Teaching Assistant for Industrial Engineering",
     company: "Kadir Has University",
     logo: "/projects/khas.png",
     description: "Assisted in teaching and grading for the Industrial Engineering department, focusing on operations research and optimization.",
@@ -112,7 +112,7 @@ const Experience: React.FC = () => {
   }, []);
 
   return (
-    <div className="py-8 px-4" id="work">
+    <div className="py-8 px-4">
       <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
         work experience
       </h1>

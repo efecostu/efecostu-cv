@@ -1,54 +1,47 @@
-# itsmehi
+# efecostu.space
 
-A modern and clean peronal website.
+Personal portfolio of Efe Costu — Industrial Engineer & Business Manager.
 
-https://github.com/user-attachments/assets/6a1f5259-8953-4be1-a057-fcbcb13811e2
+Live at [efecostu.space](https://efecostu.space), deployed on Vercel.
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) - React framework
+- [Next.js](https://nextjs.org/) - React framework (App Router)
 - [React](https://react.dev/) - UI library
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [ThreeJS/React Three Fiber](https://docs.pmnd.rs/react-three-fiber) - 3D effects
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) + [Rapier](https://github.com/pmndrs/react-three-rapier) - 3D badge card physics
+- [Nodemailer](https://nodemailer.com/) - Contact form email delivery
 - [Lucide React](https://lucide.dev/) - Icons
 
 ## Getting Started
 
-First, install dependencies:
+Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
-Create a `.env.local` file in the root directory based on `.env.example`:
+Create a `.env.local` file in the root directory for the contact form:
 
 ```bash
-NODE_ENV=
-HASHNODE_PUBLICATION_ID=
+GMAIL_USER=your@gmail.com
+GMAIL_APP_PASSWORD=your-gmail-app-password
 ```
 
-You'll need to set your actual Hashnode publication ID from hashnode dashboard.
+`GMAIL_APP_PASSWORD` is a Gmail [App Password](https://support.google.com/accounts/answer/185833) (requires 2FA on the account). The same two variables must be set in the Vercel project settings for production.
 
-Then, run the development server:
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the site.
 
 ## References
-- [Vercel card guide](https://x.com/0xca0a)
-- [hashnode newsletter integration](https://www.vistosocreative.com/blog/how-to-integrate-hashnode-newsletter-subscription-into-your-nextjs-website)
 
-## Issues
-
-Found a bug? or Have a cool idea? or just want to contribute? Go ahead and open an issue.
+- [Vercel badge card guide](https://x.com/0xca0a)
 
 ## License
 

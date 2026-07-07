@@ -16,6 +16,7 @@ const Polaroid: React.FC<PolaroidProps> = ({ image, description, alt }) => (
         src={image}
         alt={alt}
         fill
+        sizes="(max-width: 640px) 200px, 320px"
         className="object-cover"
         loading="lazy"
       />

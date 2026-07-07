@@ -14,6 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://efecostu.space"),
   title: "Efe Costu",
   description:
     "Personal portfolio of Efe Costu, Industrial Engineer",
