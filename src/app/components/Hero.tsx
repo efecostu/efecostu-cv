@@ -188,7 +188,7 @@ const Hero: React.FC = () => {
       <div className="flex gap-5 mt-8">
         <SocialLink href="https://github.com/efecostu" label="GitHub" />
         <SocialLink href="https://www.linkedin.com/in/efecostu/" label="LinkedIn" />
-        <SocialLink href="mailto:efe.costu@gmail.com" label="Email" />
+        <SocialLink href="mailto:efecostu01@gmail.com" label="Email" />
       </div>
     </div>
   );
