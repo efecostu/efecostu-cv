@@ -7,6 +7,7 @@ import Hero from "./components/Hero";
 import { ThemeProvider } from "./theme-provider";
 import Projects from "./components/Projects";
 import Work from "./components/Work";
+import Credentials from "./components/Credentials";
 import Moments from "./components/Moments";
 import ContactForm from "./components/ContactForm";
 
@@ -100,12 +101,17 @@ export default function Home() {
           </div>
 
           <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
+          <div className="relative w-full z-0">
+            <Credentials />
+          </div>
+
+          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
           <div className="relative min-h-[50vh] w-full z-0" id="moments">
             <Moments />
           </div>
 
           <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div className="relative min-h-[50vh] w-full z-0" id="contact">
+          <div className="relative w-full z-0" id="contact">
             <ContactForm />
           </div>
           <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />

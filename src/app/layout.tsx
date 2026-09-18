@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://efecostu.space"),
   title: "Efe Costu",
   description:
-    "Personal portfolio of Efe Costu, Industrial Engineer",
+    "Efe Costu — Strategy & Business Development Specialist at SKF. Industrial Engineer (Kadir Has) with an MSc in Business Management (UEA), McKinsey Forward graduate and SAP S/4HANA Certified Associate.",
   generator: "Next.js",
   applicationName: "Efe Costu Portfolio",
   keywords: [
@@ -26,7 +26,12 @@ export const metadata: Metadata = {
     "Efe Coştu",
     "Industrial Engineer",
     "Business Management",
-    "Engineer",
+    "Strategy",
+    "Business Development",
+    "SKF",
+    "Key Account Management",
+    "SAP S/4HANA",
+    "McKinsey Forward",
     "portfolio",
   ],
   authors: [{ name: "Efe Costu" }],
@@ -39,7 +44,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Efe Costu",
-    description: "Industrial Engineer, Business Management",
+    description: "Strategy & Business Development Specialist at SKF · Industrial Engineer · MSc Business Management",
     url: "https://efecostu.space",
     siteName: "Efe Costu",
     images: [
@@ -56,7 +61,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Efe Costu",
-    description: "Industrial Engineer, Business Management",
+    description: "Strategy & Business Development Specialist at SKF · Industrial Engineer · MSc Business Management",
     creator: "@efecostu",
     images: ["/og-image.jpg"],
   },

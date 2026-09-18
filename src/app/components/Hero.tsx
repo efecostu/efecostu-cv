@@ -161,11 +161,11 @@ const Hero: React.FC = () => {
       </h1>
       <div className="max-w-2xl">
         <p className="mb-4 text-base text-[var(--foreground)]">
-          Industrial Engineer & Business Manager with a passion for bridging engineering and business through smart digital solutions.
+          Strategy & Business Development Specialist at <LinkWithTooltip href="https://www.skf.com" text="SKF" description="Swedish industrial group, world leader in bearings, seals and condition monitoring. I work with Turkey's largest industrial accounts." /> — an Industrial Engineer turned commercial strategist, bridging data and business decisions.
         </p>
 
         <p className="mb-8 text-base text-[var(--foreground)]">
-          With a background in <LinkWithTooltip text="Industrial Engineering" description="Data analysis, supply chain management, SAP usage" /> and a master&apos;s in <LinkWithTooltip text="Business Management" description="Sales strategy, financial performance, project coordination" />, I&apos;ve supported operations in Turkey and the UK—optimizing logistics, developing predictive maintenance systems, and designing SEO-optimized websites.
+          With a BSc in <LinkWithTooltip text="Industrial Engineering" description="Operations research, data analysis, supply chain and decision-making models. Peer-reviewed publication on F-AHP-TOPSIS." /> and an MSc in <LinkWithTooltip text="Business Management" description="University of East Anglia, UK — strategy, marketing, project management and leadership." />, I build pricing analyses, P&amp;L models and KPI dashboards that turn operational data into growth strategy for energy, automotive and manufacturing accounts.
         </p>
 
         <div className="my-8">
@@ -173,16 +173,16 @@ const Hero: React.FC = () => {
             EXPERTISE:
           </div>
           <p className="text-base text-[var(--foreground)]">
-            Sales Engineering, Predictive Maintenance, SEO & Web Development, SAP
+            Strategic Planning, Key Account Management, Data Analytics (SQL, Power BI, Python), SAP S/4HANA & Ariba, Process Automation (n8n)
           </p>
         </div>
 
         <p className="mb-8 text-base text-[var(--foreground)]">
-          I&apos;ve collaborated with DHL, SKF, and SMEs on both technical and strategic goals.
+          <LinkWithTooltip href="https://www.mckinsey.com/forward" text="McKinsey Forward" description="McKinsey & Company's Forward Learners Programme — problem solving, adaptability and leadership skills." /> graduate and <LinkWithTooltip text="SAP S/4HANA Certified Associate" description="SAP Certified Associate — Business Process Integration with SAP S/4HANA (2025)." />. Previously at DHL Global Forwarding, where I turned operational datasets into KPI and budget forecasts for senior management.
         </p>
 
         <p className="mb-8 text-base text-[var(--foreground)]">
-          I&apos;m also a former student union president and active community builder in youth-led events and international summits.
+          Outside work I&apos;m a former Secretary General of <LinkWithTooltip href="https://hasmun.org" text="HASMUN" description="Kadir Has University Model United Nations — I led the conference in 2022 and 2023." />, hosting international summits and mentoring student delegates.
         </p>
       </div>
       <div className="flex gap-5 mt-8">

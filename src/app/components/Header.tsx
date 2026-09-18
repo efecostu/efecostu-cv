@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../theme-provider";
 
+const NAV_ITEMS = [
+  { label: "about", id: "hero" },
+  { label: "experience", id: "projects" },
+  { label: "education", id: "work" },
+  { label: "credentials", id: "credentials" },
+  { label: "moments", id: "moments" },
+  { label: "contact", id: "contact" },
+];
+
 function Header() {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,9 +29,11 @@ function Header() {
     };
   }, []);
 
+  const isDark = () => document.documentElement.classList.contains("dark");
+
   const handleThemeChange = () => {
     document.documentElement.classList.add("theme-transition");
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(isDark() ? "light" : "dark");
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -38,7 +49,7 @@ function Header() {
 
       if (sectionId === "hero") {
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (sectionId === "newsletter") {
+      } else if (sectionId === "contact") {
         window.scrollTo({
           top: document.documentElement.scrollHeight,
           behavior: "smooth",
@@ -59,15 +70,13 @@ function Header() {
 
         <div className="flex items-center gap-4">
           <ul className="hidden sm:flex items-center gap-4 social-link">
-            {["about", "experience", "education", "worth to mention", "contact"].map((text, idx) => (
-              <li key={text}>
+            {NAV_ITEMS.map(({ label, id }) => (
+              <li key={id}>
                 <button
-                  onClick={() => scrollToSection(
-                    ["hero", "projects", "work", "moments", "contact"][idx]
-                  )}
+                  onClick={() => scrollToSection(id)}
                   className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
                 >
-                  {text}
+                  {label}
                 </button>
               </li>
             ))}
@@ -80,10 +89,10 @@ function Header() {
               className="p-2 rounded-md bg-transparent hover:bg-[var(--accent)] transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === "light" ? (
-                <Moon className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
-              ) : (
+              {theme === "dark" || (theme === "system" && isDark()) ? (
                 <Sun className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
+              ) : (
+                <Moon className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
               )}
             </button>
           )}
@@ -106,15 +115,13 @@ function Header() {
       {isMenuOpen && (
         <div className="sm:hidden fixed inset-0 top-[57px] bg-background z-50">
           <ul className="flex flex-col items-center gap-6 pt-8">
-            {["about", "experience", "education", "worth to mention", "contact"].map((text, idx) => (
-              <li key={text}>
+            {NAV_ITEMS.map(({ label, id }) => (
+              <li key={id}>
                 <button
-                  onClick={() => scrollToSection(
-                    ["hero", "projects", "work", "moments", "contact"][idx]
-                  )}
+                  onClick={() => scrollToSection(id)}
                   className="text-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
                 >
-                  {text}
+                  {label}
                 </button>
               </li>
             ))}
