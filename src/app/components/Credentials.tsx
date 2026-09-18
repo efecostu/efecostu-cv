@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Award, BookOpen, Brain, ExternalLink } from "lucide-react";
+import { Award, BookOpen, Brain, ArrowUpRight } from "lucide-react";
+import Reveal from "./Reveal";
 
 interface Certification {
   title: string;
@@ -36,122 +37,107 @@ const certifications: Certification[] = [
     title: "Elements of AI",
     issuer: "University of Helsinki",
     year: "2019",
-    icon: <Brain className="w-5 h-5" />,
+    icon: <Brain className="w-5 h-5" strokeWidth={1.75} />,
     href: "https://www.elementsofai.com",
   },
   {
     title: "The Duke of Edinburgh's International Award",
     issuer: "DofE International Foundation",
     year: "2019",
-    icon: <Award className="w-5 h-5" />,
+    icon: <Award className="w-5 h-5" strokeWidth={1.75} />,
     href: "https://intaward.org",
   },
 ];
 
 const publication = {
   title: "Air Freight Specialist Evaluation with F-AHP-TOPSIS",
-  venue:
-    "Proceedings of the 14th Annual International Conference on Industrial Engineering and Operations Management",
-  place: "Dubai, UAE · 12–14 February 2024",
+  venue: "14th Annual International Conference on Industrial Engineering and Operations Management (IEOM)",
+  place: "Dubai, UAE · February 2024",
   doi: "10.46254/AN14.20240129",
   summary:
-    "A fuzzy AHP-TOPSIS multi-criteria decision model for evaluating and ranking air freight specialists, built on operational data from DHL Global Forwarding's Istanbul air freight team.",
+    "A fuzzy AHP-TOPSIS multi-criteria decision model for evaluating and ranking air freight specialists, developed from my work with DHL Global Forwarding's Istanbul air freight team.",
 };
 
 const Credentials: React.FC = () => (
-  <div className="py-8 px-4" id="credentials">
-    <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
-      credentials
-    </h1>
+  <div className="py-16 sm:py-20 px-4">
+    <Reveal>
+      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-10 text-[var(--foreground)]">
+        credentials
+      </h2>
+    </Reveal>
 
     <div className="max-w-2xl">
-      <h2 className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-3">
-        Peer-reviewed publication
-      </h2>
-      <a
-        href={`https://doi.org/${publication.doi}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group block mb-10 p-4 rounded-lg border border-[var(--border)] hover:border-[var(--muted-foreground)] transition-colors no-underline hover:no-underline"
-      >
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 flex-shrink-0 rounded-lg border border-[var(--border)] bg-[var(--muted)] flex items-center justify-center text-[var(--foreground)]">
-            <BookOpen className="w-5 h-5" />
+      <Reveal>
+        <a
+          href={`https://doi.org/${publication.doi}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-7 hover:border-[var(--muted-foreground)] active:scale-[0.995] transition-[border-color,transform] duration-200"
+        >
+          <div className="flex items-center justify-between gap-4 mb-5">
+            <span className="inline-flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
+              <BookOpen className="w-4 h-4" strokeWidth={1.75} />
+              Peer-reviewed publication
+            </span>
+            <ArrowUpRight
+              className="w-4 h-4 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-[color,transform] duration-200"
+              strokeWidth={1.75}
+            />
           </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-start justify-between gap-3">
-              <div className="text-base font-semibold text-[var(--foreground)] group-hover:underline">
-                {publication.title}
-              </div>
-              <ExternalLink className="w-4 h-4 mt-1 flex-shrink-0 text-[var(--muted-foreground)]" />
-            </div>
-            <p className="text-sm text-[var(--muted-foreground)] mt-1">
-              {publication.venue}
-            </p>
-            <p className="text-xs text-[var(--muted-foreground)] mt-1">
-              {publication.place} · DOI {publication.doi}
-            </p>
-            <p className="text-sm text-[var(--foreground)] mt-3">
-              {publication.summary}
-            </p>
-          </div>
-        </div>
-      </a>
+          <h3 className="text-xl sm:text-2xl font-medium tracking-tight leading-snug text-[var(--foreground)] mb-3">
+            {publication.title}
+          </h3>
+          <p className="text-sm text-[var(--muted-foreground)] leading-relaxed mb-4 max-w-[62ch]">
+            {publication.summary}
+          </p>
+          <p className="text-sm text-[var(--foreground)]">{publication.venue}</p>
+          <p className="font-mono text-xs text-[var(--muted-foreground)] mt-1">
+            {publication.place} · DOI {publication.doi}
+          </p>
+        </a>
+      </Reveal>
 
-      <h2 className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-3">
-        Certifications & programmes
-      </h2>
-      <ul className="space-y-5">
-        {certifications.map((cert) => {
-          const body = (
+      <ul className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {certifications.map((cert, i) => {
+          const inner = (
             <>
-              <div className="w-10 h-10 mr-4 flex-shrink-0 rounded-lg overflow-hidden border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)]">
+              <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden border border-[var(--border)] bg-white flex items-center justify-center text-neutral-800">
                 {cert.logo ? (
-                  <Image
-                    src={cert.logo}
-                    alt={`${cert.issuer} logo`}
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
-                  />
+                  <Image src={cert.logo} alt={`${cert.issuer} logo`} width={40} height={40} className="w-full h-full object-contain" />
                 ) : (
-                  <span className="text-neutral-800">{cert.icon}</span>
+                  cert.icon
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <div className="text-base font-semibold text-[var(--foreground)] inline-flex items-center gap-1">
-                    {cert.title}
-                    {cert.href && (
-                      <ExternalLink className="w-3 h-3 text-[var(--muted-foreground)]" />
-                    )}
-                  </div>
-                  <div className="text-xs text-[var(--muted-foreground)]">
-                    {cert.year}
-                  </div>
+                <div className="text-base font-medium tracking-tight text-[var(--foreground)] inline-flex items-center gap-1.5">
+                  <span className={cert.href ? "group-hover:underline underline-offset-4" : ""}>{cert.title}</span>
+                  {cert.href && (
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" strokeWidth={1.75} />
+                  )}
                 </div>
-                <p className="text-sm text-[var(--muted-foreground)] mt-1">
-                  {cert.issuer}
-                </p>
+                <p className="text-sm text-[var(--muted-foreground)] mt-0.5">{cert.issuer}</p>
               </div>
+              <span className="font-mono text-xs text-[var(--muted-foreground)] tabular-nums flex-shrink-0">
+                {cert.year}
+              </span>
             </>
           );
 
           return (
-            <li key={cert.title}>
+            <Reveal as="li" key={cert.title} delay={i * 50}>
               {cert.href ? (
                 <a
                   href={cert.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start no-underline hover:no-underline [&:hover_.text-base]:underline"
+                  className="group flex items-center gap-4 py-4 -mx-2 px-2 rounded-md hover:bg-[var(--accent)] transition-colors duration-200"
                 >
-                  {body}
+                  {inner}
                 </a>
               ) : (
-                <div className="flex items-start">{body}</div>
+                <div className="flex items-center gap-4 py-4">{inner}</div>
               )}
-            </li>
+            </Reveal>
           );
         })}
       </ul>

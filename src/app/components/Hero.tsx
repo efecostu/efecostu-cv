@@ -153,42 +153,87 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, label }) => {
   );
 };
 
+const expertise = [
+  "Strategic planning",
+  "Key account management",
+  "Pricing & P&L analysis",
+  "SQL · Power BI · Python",
+  "SAP S/4HANA & Ariba",
+  "Process automation (n8n)",
+];
+
 const Hero: React.FC = () => {
   return (
-    <div className="py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
-        Hi, Efe Costu 👋
-      </h1>
+    <div className="pt-16 pb-14 sm:pt-24 sm:pb-20 px-4">
       <div className="max-w-2xl">
-        <p className="mb-4 text-base text-[var(--foreground)]">
-          Strategy & Business Development Specialist at <LinkWithTooltip href="https://www.skf.com" text="SKF" description="Swedish industrial group, world leader in bearings, seals and condition monitoring. I work with Turkey's largest industrial accounts." /> — an Industrial Engineer turned commercial strategist, bridging data and business decisions.
+        <p className="text-sm text-[var(--muted-foreground)] mb-3">Istanbul, Türkiye</p>
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05] text-[var(--foreground)] mb-5">
+          Efe Coştu
+        </h1>
+        <p className="text-lg sm:text-xl text-[var(--foreground)] leading-snug mb-8">
+          Strategy &amp; Business Development Specialist at{" "}
+          <LinkWithTooltip
+            href="https://www.skf.com"
+            text="SKF"
+            description="Swedish industrial group, world leader in bearings, seals and condition monitoring. I work with Turkey's largest industrial accounts."
+          />
+          . Industrial engineer turned commercial strategist.
         </p>
 
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          With a BSc in <LinkWithTooltip text="Industrial Engineering" description="Operations research, data analysis, supply chain and decision-making models. Peer-reviewed publication on F-AHP-TOPSIS." /> and an MSc in <LinkWithTooltip text="Business Management" description="University of East Anglia, UK — strategy, marketing, project management and leadership." />, I build pricing analyses, P&amp;L models and KPI dashboards that turn operational data into growth strategy for energy, automotive and manufacturing accounts.
+        <p className="mb-6 text-base text-[var(--muted-foreground)] leading-relaxed max-w-[62ch]">
+          I turn operational data into growth decisions for energy, automotive and manufacturing accounts: pricing
+          analyses, P&amp;L models and KPI dashboards that senior leadership actually uses. BSc in{" "}
+          <LinkWithTooltip
+            text="Industrial Engineering"
+            description="Operations research, data analysis, supply chain and decision-making models. Peer-reviewed publication on F-AHP-TOPSIS."
+          />
+          , MSc in{" "}
+          <LinkWithTooltip
+            text="Business Management"
+            description="University of East Anglia, UK — strategy, marketing, project management and leadership."
+          />
+          ,{" "}
+          <LinkWithTooltip
+            href="https://www.mckinsey.com/forward"
+            text="McKinsey Forward"
+            description="McKinsey & Company's Forward Learners Programme — problem solving, adaptability and leadership skills."
+          />{" "}
+          graduate.
         </p>
 
-        <div className="my-8">
-          <div className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
-            EXPERTISE:
+        <p className="mb-10 text-base text-[var(--muted-foreground)] leading-relaxed max-w-[62ch]">
+          Previously at DHL Global Forwarding. Former Secretary General of{" "}
+          <LinkWithTooltip
+            href="https://hasmun.org"
+            text="HASMUN"
+            description="Kadir Has University Model United Nations — I led the conference in 2022 and 2023."
+          />
+          , hosting international summits and mentoring student delegates.
+        </p>
+
+        <ul className="flex flex-wrap gap-2 mb-10" aria-label="Areas of expertise">
+          {expertise.map((item) => (
+            <li
+              key={item}
+              className="text-sm px-3 py-1.5 rounded-md border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)]"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-wrap items-center gap-5">
+          <a
+            href="#contact"
+            className="inline-flex items-center h-11 px-5 rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] text-sm font-medium hover:opacity-90 active:scale-[0.98] transition-[opacity,transform] duration-200"
+          >
+            Get in touch
+          </a>
+          <div className="flex gap-5">
+            <SocialLink href="https://www.linkedin.com/in/efecostu/" label="LinkedIn" />
+            <SocialLink href="https://github.com/efecostu" label="GitHub" />
           </div>
-          <p className="text-base text-[var(--foreground)]">
-            Strategic Planning, Key Account Management, Data Analytics (SQL, Power BI, Python), SAP S/4HANA & Ariba, Process Automation (n8n)
-          </p>
         </div>
-
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          <LinkWithTooltip href="https://www.mckinsey.com/forward" text="McKinsey Forward" description="McKinsey & Company's Forward Learners Programme — problem solving, adaptability and leadership skills." /> graduate and <LinkWithTooltip text="SAP S/4HANA Certified Associate" description="SAP Certified Associate — Business Process Integration with SAP S/4HANA (2025)." />. Previously at DHL Global Forwarding, where I turned operational datasets into KPI and budget forecasts for senior management.
-        </p>
-
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          Outside work I&apos;m a former Secretary General of <LinkWithTooltip href="https://hasmun.org" text="HASMUN" description="Kadir Has University Model United Nations — I led the conference in 2022 and 2023." />, hosting international summits and mentoring student delegates.
-        </p>
-      </div>
-      <div className="flex gap-5 mt-8">
-        <SocialLink href="https://github.com/efecostu" label="GitHub" />
-        <SocialLink href="https://www.linkedin.com/in/efecostu/" label="LinkedIn" />
-        <SocialLink href="mailto:efecostu01@gmail.com" label="Email" />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 interface PolaroidProps {
   image: string;
@@ -10,7 +11,7 @@ interface PolaroidProps {
 }
 
 const Polaroid: React.FC<PolaroidProps> = ({ image, description, alt }) => (
-  <div className="polaroid-card min-w-[200px] sm:min-w-80 bg-white p-2 sm:p-4 pb-4 sm:pb-6 shadow-xl m-2 sm:m-4 transition-transform duration-300 hover:-rotate-2 hover:scale-105 relative select-none">
+  <div className="polaroid-card min-w-[200px] sm:min-w-80 bg-white p-2 sm:p-4 pb-4 sm:pb-6 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] m-2 sm:m-4 transition-transform duration-300 ease-out hover:-rotate-1 hover:scale-[1.03] relative select-none">
     <div className="mb-2 sm:mb-4 h-48 sm:h-80 overflow-hidden relative pointer-events-none">
       <Image
         src={image}
@@ -150,16 +151,15 @@ const Moments: React.FC = () => {
   };
 
   return (
-    <div className="py-8">
-      <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)] px-4">moments</h1>
-      <div className="max-w-2xl px-4">
-        <p className="mb-6 text-base text-[var(--foreground)]">
-          A visual snapshot of the journey — team wins, stage talks, and the people along the way.
-          Drag to browse.
+    <div className="py-16 sm:py-20">
+      <Reveal className="px-4 max-w-2xl">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-[var(--foreground)]">moments</h2>
+        <p className="mb-8 text-base text-[var(--muted-foreground)] leading-relaxed max-w-[62ch]">
+          Team wins, stage talks and the people along the way. Drag to browse.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="relative w-full overflow-x-hidden overflow-y-visible">
+      <div className="relative w-full overflow-x-hidden overflow-y-visible [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
         <div
           ref={setRefs}
           className="flex cursor-grab overflow-x-auto scrollbar-hide py-4 touch-pan-x"
@@ -182,11 +182,6 @@ const Moments: React.FC = () => {
         </div>
       </div>
 
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };

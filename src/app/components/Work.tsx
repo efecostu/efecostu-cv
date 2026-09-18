@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 interface EducationProps {
   degree: string;
@@ -8,43 +9,8 @@ interface EducationProps {
   period: string;
   logo: string;
   description: string;
+  wide?: boolean;
 }
-
-const EducationItem: React.FC<EducationProps> = ({
-  degree,
-  institution,
-  period,
-  logo,
-  description,
-}) => (
-  <div className="mb-8">
-    <div className="flex items-start">
-      <div className="w-10 h-10 mr-4 flex-shrink-0 rounded-lg overflow-hidden border border-[var(--border)] bg-white">
-        <Image
-          src={logo}
-          alt={`${institution} logo`}
-          width={40}
-          height={40}
-          className="w-full h-full object-contain"
-        />
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <div className="text-base text-[var(--foreground)] font-semibold">
-            {degree} @ {institution}
-          </div>
-          <div className="text-xs text-[var(--muted-foreground)] whitespace-nowrap">
-            {period}
-          </div>
-        </div>
-        <p className="text-sm text-[var(--muted-foreground)] mt-1">
-          {description}
-        </p>
-      </div>
-    </div>
-  </div>
-);
 
 const educationData: EducationProps[] = [
   {
@@ -84,20 +50,55 @@ const educationData: EducationProps[] = [
     period: "2022 – 2023 · hasmun.org",
     logo: "/companies/hasmun.jpeg",
     description:
-      "Led Kadir Has University's international Model UN conference for two consecutive years — organising committees, hosting diplomats and mentoring student delegates.",
+      "Led Kadir Has University's international Model UN conference for two consecutive years: committees, visiting diplomats, and mentoring student delegates.",
+    wide: true,
   },
 ];
 
-const Education: React.FC = () => (
-  <div className="py-8 px-4" id="education">
-    <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
-      education
-    </h1>
-    <div className="max-w-2xl">
-      {educationData.map((edu) => (
-        <EducationItem key={`${edu.institution}-${edu.degree}`} {...edu} />
-      ))}
+const EducationCard: React.FC<EducationProps & { index: number }> = ({
+  degree,
+  institution,
+  period,
+  logo,
+  description,
+  wide,
+  index,
+}) => (
+  <Reveal
+    as="li"
+    delay={index * 60}
+    className={`rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 flex flex-col gap-4 ${
+      wide ? "sm:col-span-2" : ""
+    }`}
+  >
+    <div className="flex items-start justify-between gap-4">
+      <div className="w-11 h-11 rounded-lg overflow-hidden border border-[var(--border)] bg-white flex-shrink-0">
+        <Image src={logo} alt={`${institution} logo`} width={44} height={44} className="w-full h-full object-contain" />
+      </div>
+      <span className="font-mono text-xs text-[var(--muted-foreground)] tabular-nums text-right leading-snug">
+        {period}
+      </span>
     </div>
+    <div>
+      <h3 className="text-base font-medium tracking-tight text-[var(--foreground)] leading-snug">{degree}</h3>
+      <p className="text-sm text-[var(--muted-foreground)] mt-0.5">{institution}</p>
+    </div>
+    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{description}</p>
+  </Reveal>
+);
+
+const Education: React.FC = () => (
+  <div className="py-16 sm:py-20 px-4">
+    <Reveal>
+      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-10 text-[var(--foreground)]">
+        education
+      </h2>
+    </Reveal>
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {educationData.map((edu, i) => (
+        <EducationCard key={`${edu.institution}-${edu.degree}`} {...edu} index={i} />
+      ))}
+    </ul>
   </div>
 );
 

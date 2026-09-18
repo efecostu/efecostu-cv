@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { Analytics } from '@vercel/analytics/react';
-
-const inter = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://efecostu.space"),
@@ -80,18 +71,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <div className="relative">
           <div className="relative mx-auto max-w-screen-xl">
-            <div className="absolute left-8 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden"></div>
+            <div className="absolute left-4 sm:left-8 top-0 bottom-0 border-l border-dotted border-[var(--border)] h-full overflow-hidden" aria-hidden="true"></div>
+            <div className="absolute right-4 sm:right-8 top-0 bottom-0 border-l border-dotted border-[var(--border)] h-full overflow-hidden" aria-hidden="true"></div>
 
-            <div className="absolute right-8 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden"></div>
-
-            <div className="px-[34px]">
-              {children}
-            </div>
+            <div className="px-[18px] sm:px-[34px]">{children}</div>
           </div>
         </div>
         <Analytics />

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 interface ExperienceProps {
   title: string;
@@ -12,7 +13,7 @@ interface ExperienceProps {
   highlights: string[];
 }
 
-const ExperienceItem: React.FC<ExperienceProps> = ({
+const ExperienceItem: React.FC<ExperienceProps & { index: number; isLast: boolean }> = ({
   title,
   company,
   period,
@@ -20,41 +21,42 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
   logo,
   description,
   highlights,
+  index,
+  isLast,
 }) => (
-  <div className="mb-10">
-    <div className="flex items-start">
-      <div className="w-10 h-10 mr-4 flex-shrink-0 rounded-lg overflow-hidden border border-[var(--border)] bg-white">
-        <Image
-          src={logo}
-          alt={`${company} logo`}
-          width={40}
-          height={40}
-          className="w-full h-full object-contain"
-        />
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <div className="text-base text-[var(--foreground)] font-semibold">
-            {title} @ {company}
-          </div>
-          <div className="text-xs text-[var(--muted-foreground)] whitespace-nowrap">
-            {period} · {location}
-          </div>
-        </div>
-        <p className="text-sm text-[var(--muted-foreground)] mt-1">
-          {description}
-        </p>
-        {highlights.length > 0 && (
-          <ul className="mt-2 space-y-1 text-sm text-[var(--muted-foreground)] list-disc pl-5 marker:text-[var(--border)]">
-            {highlights.map((h) => (
-              <li key={h}>{h}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+  <Reveal as="li" delay={index * 60} className="relative pl-14 sm:pl-16">
+    {!isLast && (
+      <span
+        className="absolute left-5 sm:left-6 top-12 bottom-0 w-px bg-[var(--border)]"
+        aria-hidden="true"
+      />
+    )}
+    <div className="absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border border-[var(--border)] bg-white">
+      <Image src={logo} alt={`${company} logo`} width={48} height={48} className="w-full h-full object-contain" />
     </div>
-  </div>
+
+    <div className={`min-w-0 ${isLast ? "pb-0" : "pb-10"}`}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h3 className="text-base sm:text-lg font-medium tracking-tight text-[var(--foreground)]">
+          {title} <span className="text-[var(--muted-foreground)] font-normal">@ {company}</span>
+        </h3>
+        <div className="font-mono text-xs text-[var(--muted-foreground)] whitespace-nowrap tabular-nums">
+          {period} · {location}
+        </div>
+      </div>
+      <p className="text-sm text-[var(--muted-foreground)] mt-2 max-w-[62ch] leading-relaxed">{description}</p>
+      {highlights.length > 0 && (
+        <ul className="mt-3 space-y-1.5 text-sm text-[var(--foreground)] max-w-[62ch]">
+          {highlights.map((h) => (
+            <li key={h} className="flex gap-2.5">
+              <span className="mt-[0.6em] h-1 w-1 flex-shrink-0 rounded-full bg-[var(--muted-foreground)]" aria-hidden="true" />
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </Reveal>
 );
 
 const experiences: ExperienceProps[] = [
@@ -90,11 +92,11 @@ const experiences: ExperienceProps[] = [
   {
     title: "Digital Marketing & Growth Analyst",
     company: "Minuteman Press Norwich",
-    period: "Oct 2023 – Present",
+    period: "Oct 2023 – Jun 2026",
     location: "Norwich, UK · remote",
     logo: "/projects/minuteman.png",
     description:
-      "Started during my MSc: SEO, Google Ads and competitive analysis for a UK print agency — a 45% average increase in qualified inbound traffic.",
+      "Started during my MSc: SEO, AI-driven search visibility and Google Ads for a UK print agency — a 45% average increase in qualified inbound traffic.",
     highlights: [],
   },
   {
@@ -130,15 +132,22 @@ const experiences: ExperienceProps[] = [
 ];
 
 const Experience: React.FC = () => (
-  <div className="py-8 px-4">
-    <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
-      work experience
-    </h1>
-    <div className="max-w-2xl">
-      {experiences.map((exp) => (
-        <ExperienceItem key={`${exp.company}-${exp.period}`} {...exp} />
+  <div className="py-16 sm:py-20 px-4">
+    <Reveal>
+      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-10 text-[var(--foreground)]">
+        work experience
+      </h2>
+    </Reveal>
+    <ol className="max-w-2xl">
+      {experiences.map((exp, i) => (
+        <ExperienceItem
+          key={`${exp.company}-${exp.period}`}
+          {...exp}
+          index={i}
+          isLast={i === experiences.length - 1}
+        />
       ))}
-    </div>
+    </ol>
   </div>
 );
 

@@ -10,58 +10,43 @@ import Work from "./components/Work";
 import Credentials from "./components/Credentials";
 import Moments from "./components/Moments";
 import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
 
 // Dynamically import Card with SSR disabled to avoid Three.js/Rapier SSR issues
 const Card = dynamic(() => import("./components/Card"), { ssr: false });
 
+const Divider = () => (
+  <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%]" aria-hidden="true" />
+);
+
 export default function Home() {
   const [cardHeight, setCardHeight] = useState("100vh");
   const headerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
 
-  // Calculate and update the card height based on content
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     const calculateHeight = () => {
-      // Wait for DOM to be fully rendered
-      setTimeout(() => {
-        if (
-          headerRef.current &&
-          heroRef.current &&
-          projectsRef.current &&
-          workRef.current
-        ) {
-          // Get the top position of header
-          const headerTop =
-            headerRef.current.getBoundingClientRect().top + window.scrollY;
-
-          // Get the bottom position of work section
-          const workBottom =
-            workRef.current.getBoundingClientRect().bottom + window.scrollY;
-
-          // Calculate the total height from header to work section
-          const totalHeight = workBottom - headerTop;
-
-          // Set the card height
-          setCardHeight(`${totalHeight + 30}px`);
-        }
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (!headerRef.current || !workRef.current) return;
+        const headerTop = headerRef.current.getBoundingClientRect().top + window.scrollY;
+        const workBottom = workRef.current.getBoundingClientRect().bottom + window.scrollY;
+        setCardHeight(`${workBottom - headerTop + 30}px`);
       }, 100);
     };
 
-    // Calculate on initial render
     calculateHeight();
-
-    // Recalculate on window resize
     window.addEventListener("resize", calculateHeight);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", calculateHeight);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", calculateHeight);
+    };
   }, []);
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
-      <div className="min-h-screen p-0 font-[family-name:var(--font-geist-sans)]">
+      <div className="min-h-screen p-0">
         <div
           className="card-wrapper mr-10 hidden lg:block"
           style={{ height: cardHeight, position: "absolute", top: 0, right: 0 }}
@@ -69,52 +54,44 @@ export default function Home() {
           <Card />
         </div>
 
-        {/* Main content area */}
         <div className="relative">
-          {/* Header with higher z-index to appear above card */}
-          <header className="relative z-20 " ref={headerRef}>
+          <header className="sticky top-0 z-20" ref={headerRef}>
             <Header />
           </header>
 
-          {/* Hero section with lower z-index to appear below card */}
-          <div className="hero-section relative z-0" ref={heroRef} id="hero">
-            <Hero />
-          </div>
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
+          <main>
+            <section className="hero-section relative z-0" id="hero">
+              <Hero />
+            </section>
+            <Divider />
 
-          {/* Content after hero section */}
-          <div
-            className="relative min-h-[50vh] w-full z-0"
-            ref={projectsRef}
-            id="projects"
-          >
-            <Projects />
-          </div>
+            <section className="relative w-full z-0" id="projects">
+              <Projects />
+            </section>
+            <Divider />
 
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div
-            className="relative min-h-[50vh] w-full z-0"
-            ref={workRef}
-            id="work"
-          >
-            <Work />
-          </div>
+            <section className="relative w-full z-0" ref={workRef} id="work">
+              <Work />
+            </section>
+            <Divider />
 
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div className="relative w-full z-0">
-            <Credentials />
-          </div>
+            <section className="relative w-full z-0" id="credentials">
+              <Credentials />
+            </section>
+            <Divider />
 
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div className="relative min-h-[50vh] w-full z-0" id="moments">
-            <Moments />
-          </div>
+            <section className="relative w-full z-0" id="moments">
+              <Moments />
+            </section>
+            <Divider />
 
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div className="relative w-full z-0" id="contact">
-            <ContactForm />
-          </div>
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
+            <section className="relative w-full z-0" id="contact">
+              <ContactForm />
+            </section>
+            <Divider />
+          </main>
+
+          <Footer />
         </div>
       </div>
     </ThemeProvider>
